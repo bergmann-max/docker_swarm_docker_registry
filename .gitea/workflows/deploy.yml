@@ -24,6 +24,11 @@ jobs:
     runs-on: ubuntu
 
     steps:
+      - name: Login to private registry
+        run: |
+          echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login registry.bergmannquarz.com \
+            -u "${{ secrets.REGISTRY_USER }}" --password-stdin
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
